@@ -1,0 +1,99 @@
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:bg-red-600 hover:scale-105 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:bg-primary hover:text-white hover:scale-105 active:scale-95;
+  }
+  
+  .card {
+    @apply bg-surface rounded-xl shadow-lg border border-gray-800 transition-all duration-300 hover:shadow-2xl hover:border-gray-700;
+  }
+  
+  .movie-card {
+    @apply card overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105;
+  }
+  
+  .seat {
+    @apply w-8 h-8 rounded-t-lg cursor-pointer transition-all duration-200 border-2;
+  }
+  
+  .seat-available {
+    @apply bg-gray-600 border-gray-500 hover:bg-gray-500;
+  }
+  
+  .seat-selected {
+    @apply bg-primary border-red-600;
+  }
+  
+  .seat-booked {
+    @apply bg-gray-800 border-gray-700 cursor-not-allowed;
+  }
+  
+  .gradient-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent;
+  }
+}
+
+/* Toast Customization */
+.Toastify__toast-container {
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  background: #1A1A2E;
+  color: #ffffff;
+  border-radius: 0.75rem;
+  border: 1px solid #374151;
+  font-family: 'Inter', sans-serif;
+  min-height: auto;
+  padding: 1rem;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #27AE60, #2ECC71);
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #E74C3C, #C0392B);
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(135deg, #F39C12, #E67E22);
+}
+
+.Toastify__progress-bar {
+  background: rgba(255, 255, 255, 0.7);
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "Id": 1,
+    "name": "Cineplex Downtown",
+    "address": "123 Main Street, Downtown",
+    "showtimes": ["10:00 AM", "1:30 PM", "4:45 PM", "8:00 PM", "11:15 PM"],
+    "screens": ["Screen 1", "Screen 2", "Screen 3"]
+  },
+  {
+    "Id": 2,
+    "name": "Multiplex Central",
+    "address": "456 Central Avenue, City Center",
+    "showtimes": ["11:00 AM", "2:15 PM", "5:30 PM", "8:45 PM"],
+    "screens": ["Hall A", "Hall B", "Hall C", "Hall D"]
+  },
+  {
+    "Id": 3,
+    "name": "Grand Cinema Palace",
+    "address": "789 Palace Road, Uptown",
+    "showtimes": ["9:30 AM", "12:45 PM", "4:00 PM", "7:15 PM", "10:30 PM"],
+    "screens": ["Platinum 1", "Platinum 2", "Gold Screen"]
+  },
+  {
+    "Id": 4,
+    "name": "Metro Movie House",
+    "address": "321 Metro Boulevard, Westside",
+    "showtimes": ["10:30 AM", "1:45 PM", "5:00 PM", "8:15 PM"],
+    "screens": ["Theater 1", "Theater 2", "Theater 3", "Theater 4"]
+  },
+  {
+    "Id": 5,
+    "name": "StarLight Cinemas",
+    "address": "654 StarLight Plaza, Eastside",
+    "showtimes": ["11:30 AM", "3:00 PM", "6:15 PM", "9:30 PM"],
+    "screens": ["Star 1", "Star 2", "IMAX"]
+  }
+]

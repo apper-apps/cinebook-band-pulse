@@ -1,0 +1,137 @@
+[
+  {
+    "Id": 1,
+    "theaterId": 1,
+    "row": "A",
+    "number": 1,
+    "type": "Regular",
+    "price": 12.50,
+    "isBooked": false
+  },
+  {
+    "Id": 2,
+    "theaterId": 1,
+    "row": "A",
+    "number": 2,
+    "type": "Regular",
+    "price": 12.50,
+    "isBooked": true
+  },
+  {
+    "Id": 3,
+    "theaterId": 1,
+    "row": "A",
+    "number": 3,
+    "type": "Regular",
+    "price": 12.50,
+    "isBooked": false
+  },
+  {
+    "Id": 4,
+    "theaterId": 1,
+    "row": "A",
+    "number": 4,
+    "type": "Regular",
+    "price": 12.50,
+    "isBooked": false
+  },
+  {
+    "Id": 5,
+    "theaterId": 1,
+    "row": "A",
+    "number": 5,
+    "type": "Regular",
+    "price": 12.50,
+    "isBooked": true
+  },
+  {
+    "Id": 6,
+    "theaterId": 1,
+    "row": "B",
+    "number": 1,
+    "type": "Premium",
+    "price": 18.50,
+    "isBooked": false
+  },
+  {
+    "Id": 7,
+    "theaterId": 1,
+    "row": "B",
+    "number": 2,
+    "type": "Premium",
+    "price": 18.50,
+    "isBooked": false
+  },
+  {
+    "Id": 8,
+    "theaterId": 1,
+    "row": "B",
+    "number": 3,
+    "type": "Premium",
+    "price": 18.50,
+    "isBooked": false
+  },
+  {
+    "Id": 9,
+    "theaterId": 1,
+    "row": "B",
+    "number": 4,
+    "type": "Premium",
+    "price": 18.50,
+    "isBooked": true
+  },
+  {
+    "Id": 10,
+    "theaterId": 1,
+    "row": "B",
+    "number": 5,
+    "type": "Premium",
+    "price": 18.50,
+    "isBooked": false
+  },
+  {
+    "Id": 11,
+    "theaterId": 1,
+    "row": "C",
+    "number": 1,
+    "type": "VIP",
+    "price": 25.00,
+    "isBooked": false
+  },
+  {
+    "Id": 12,
+    "theaterId": 1,
+    "row": "C",
+    "number": 2,
+    "type": "VIP",
+    "price": 25.00,
+    "isBooked": false
+  },
+  {
+    "Id": 13,
+    "theaterId": 1,
+    "row": "C",
+    "number": 3,
+    "type": "VIP",
+    "price": 25.00,
+    "isBooked": false
+  },
+  {
+    "Id": 14,
+    "theaterId": 1,
+    "row": "C",
+    "number": 4,
+    "type": "VIP",
+    "price": 25.00,
+    "isBooked": false
+  },
+  {
+    "Id": 15,
+    "theaterId": 1,
+    "row": "C",
+    "number": 5,
+    "type": "VIP",
+    "price": 25.00,
+    "isBooked": true
+  }
+]

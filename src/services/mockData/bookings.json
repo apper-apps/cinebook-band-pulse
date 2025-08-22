@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "movieId": 1,
+    "theaterId": 1,
+    "showtime": "8:00 PM",
+    "seats": ["A1", "A2"],
+    "totalPrice": 25.00,
+    "bookingDate": "2024-01-20T10:30:00Z",
+    "status": "confirmed"
+  },
+  {
+    "Id": 2,
+    "movieId": 3,
+    "theaterId": 2,
+    "showtime": "2:15 PM",
+    "seats": ["B3", "B4", "B5"],
+    "totalPrice": 55.50,
+    "bookingDate": "2024-01-21T14:15:00Z",
+    "status": "confirmed"
+  }
+]
