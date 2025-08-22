@@ -8,13 +8,31 @@ export const movieService = {
     return [...moviesData];
   },
 
-  async getById(id) {
+async getById(id) {
     await delay(200);
     const movie = moviesData.find(movie => movie.Id === parseInt(id));
     if (!movie) {
       throw new Error("Movie not found");
     }
-    return { ...movie };
+    
+    // Add director information based on movie
+    const directors = {
+      1: "Christopher Nolan",
+      2: "Christopher Nolan", 
+      3: "Christopher Nolan",
+      4: "Anthony Russo, Joe Russo",
+      5: "Bong Joon-ho",
+      6: "Jon Watts",
+      7: "Denis Villeneuve",
+      8: "Joseph Kosinski",
+      9: "Ryan Coogler",
+      10: "Matt Reeves"
+    };
+    
+    return { 
+      ...movie, 
+      director: directors[movie.Id] || "Unknown Director" 
+    };
   },
 
   async searchByTitle(query) {

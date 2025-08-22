@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { movieService } from "@/services/api/movieService";
-import TheaterList from "@/components/organisms/TheaterList";
-import Button from "@/components/atoms/Button";
-import Badge from "@/components/atoms/Badge";
-import Rating from "@/components/atoms/Rating";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
 import ApperIcon from "@/components/ApperIcon";
+import TheaterList from "@/components/organisms/TheaterList";
+import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
+import Button from "@/components/atoms/Button";
+import Rating from "@/components/atoms/Rating";
+import Badge from "@/components/atoms/Badge";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -24,7 +24,7 @@ const MovieDetails = () => {
     }
   }, [id]);
 
-  const loadMovie = async () => {
+const loadMovie = async () => {
     try {
       setLoading(true);
       setError("");
@@ -54,33 +54,17 @@ const MovieDetails = () => {
   }
 
   if (error) {
-    return (
-      <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <Error message={error} onRetry={loadMovie} />
-        </div>
-      </div>
-    );
+    return <Error message={error} onRetry={loadMovie} />;
   }
 
   if (!movie) {
-    return (
-      <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <Error 
-            title="Movie not found"
-            message="The movie you're looking for doesn't exist or has been removed."
-            showRetry={false}
-          />
-        </div>
-      </div>
-    );
+    return <Error message="Movie not found" />;
   }
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center overflow-hidden">
+      <section className="relative h-screen flex items-end overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
@@ -88,113 +72,171 @@ const MovieDetails = () => {
             alt={movie.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Movie Poster */}
+        {/* Content Overlay */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl"
+          >
+            {/* Back Button */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="flex justify-center lg:justify-start"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-6"
             >
-              <div className="relative">
-                <img
-                  src={movie.poster}
-                  alt={movie.title}
-                  className="w-80 h-[480px] object-cover rounded-xl shadow-2xl"
-                />
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <ApperIcon name="Play" className="w-8 h-8 text-white ml-1" />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Movie Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-6"
-            >
-              {/* Back Button */}
               <Button
                 variant="ghost"
-                onClick={handleBack}
-                className="mb-4"
+onClick={handleBack}
+                className="text-white hover:bg-white/10 backdrop-blur-sm"
               >
-                <ApperIcon name="ArrowLeft" className="w-4 h-4 mr-2" />
+                <ApperIcon name="ArrowLeft" className="w-5 h-5 mr-2" />
                 Back
               </Button>
+            </motion.div>
 
-              <div>
-                <h1 className="text-5xl font-display font-bold text-white mb-4">
-                  {movie.title}
-                </h1>
-                <div className="flex items-center gap-4 mb-4">
-                  <Rating rating={movie.rating} />
-                  <span className="text-gray-400">•</span>
-                  <span className="text-gray-300">{movie.duration}</span>
-                  <span className="text-gray-400">•</span>
-                  <span className="text-gray-300">{movie.language}</span>
-                </div>
+            {/* Movie Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-tight"
+            >
+              {movie.title}
+            </motion.h1>
+
+            {/* Movie Meta Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap items-center gap-6 mb-6"
+            >
+              <div className="flex items-center gap-2">
+                <Rating rating={movie.rating} className="bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1" />
               </div>
-
-              {/* Genres */}
-              <div className="flex flex-wrap gap-2">
-                {movie.genre.map(genre => (
-                  <Badge key={genre} variant="primary">
-                    {genre}
-                  </Badge>
-                ))}
+              <div className="flex items-center gap-2 text-gray-300">
+                <ApperIcon name="Clock" className="w-5 h-5" />
+                <span className="text-lg">{movie.duration}</span>
               </div>
-
-              {/* Description */}
-              <p className="text-lg text-gray-300 leading-relaxed">
-                {movie.description}
-              </p>
-
-              {/* Release Date */}
-              <div className="flex items-center gap-3 text-gray-400">
-                <ApperIcon name="Calendar" className="w-5 h-5" />
-                <span>Released on {new Date(movie.releaseDate).toLocaleDateString()}</span>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button
-                  size="lg"
-                  onClick={handleBookNow}
-                  className="text-lg px-8 py-4"
-                >
-                  <ApperIcon name="Ticket" className="w-6 h-6 mr-2" />
-                  Book Tickets
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="text-lg px-8 py-4"
-                >
-                  <ApperIcon name="Heart" className="w-6 h-6 mr-2" />
-                  Add to Wishlist
-                </Button>
+              <div className="flex items-center gap-2 text-gray-300">
+                <ApperIcon name="Globe" className="w-5 h-5" />
+                <span className="text-lg">{movie.language}</span>
               </div>
             </motion.div>
-          </div>
+
+            {/* Genres */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap gap-3 mb-6"
+            >
+              {movie.genre.map(genre => (
+                <Badge key={genre} variant="default" className="text-sm px-3 py-1 bg-primary/20 text-primary border border-primary/30">
+                  {genre}
+                </Badge>
+              ))}
+            </motion.div>
+
+            {/* Release Date and Director */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="space-y-3 mb-8"
+            >
+              <div className="flex items-center gap-3 text-gray-300">
+                <ApperIcon name="Calendar" className="w-5 h-5" />
+                <span className="text-lg">Released on {new Date(movie.releaseDate).toLocaleDateString()}</span>
+              </div>
+              {movie.director && (
+                <div className="flex items-center gap-3 text-gray-300">
+                  <ApperIcon name="User" className="w-5 h-5" />
+                  <span className="text-lg">Directed by {movie.director}</span>
+                </div>
+              )}
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="text-xl text-gray-200 leading-relaxed mb-8 max-w-2xl"
+            >
+              {movie.description}
+            </motion.p>
+
+            {/* Action Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <Button
+                size="lg"
+onClick={handleBookNow}
+                className="text-lg px-8 py-4 bg-primary hover:bg-primary/90 text-white"
+              >
+                <ApperIcon name="Ticket" className="w-6 h-6 mr-2" />
+                Book Tickets
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center text-white/70"
+          >
+            <ApperIcon name="ChevronDown" className="w-6 h-6" />
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* Theater Selection */}
+{/* Theater Selection Section */}
       {showTheaters && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-surface/30">
-          <div className="max-w-6xl mx-auto">
-            <TheaterList
-              movieId={movie.Id}
-              onTheaterSelect={handleTheaterSelect}
-            />
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-display font-bold text-white mb-4">
+                Select Theater & Showtime
+              </h2>
+              <p className="text-xl text-gray-400">
+                Choose your preferred theater and showtime for {movie.title}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <TheaterList 
+                movieId={movie.Id}
+                onTheaterSelect={handleTheaterSelect}
+              />
+            </motion.div>
           </div>
         </section>
       )}
